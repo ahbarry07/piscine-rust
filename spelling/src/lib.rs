@@ -3,7 +3,7 @@ pub fn spell(n: u64) -> String {
     let teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
     let tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
     let thousands = ["", "thousand", "million"];
-
+    println!("nyyierf {}", n);
     if n == 0{
         return "zero".to_string()
     } else if n < 10 {
