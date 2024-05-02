@@ -1,10 +1,12 @@
 pub fn spell(n: u64) -> String {
-    let ones = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+    let ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
     let teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
     let tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
     let thousands = ["", "thousand", "million"];
 
-    if n < 10 {
+    if n == 0{
+        return "zero".to_string()
+    }else if n < 10 {
         return ones[n as usize].to_string();
     } else if n < 20 {
         return teens[(n - 10) as usize].to_string();
