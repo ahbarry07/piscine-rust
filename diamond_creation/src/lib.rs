@@ -1,6 +1,4 @@
-
 pub fn get_diamond(c: char) -> Vec<String> {
-    
     let size = (c as u8 - b'A') as usize + 1;
     let mut diamond: Vec<String> = Vec::with_capacity(size * 2 - 1);
     
@@ -9,9 +7,10 @@ pub fn get_diamond(c: char) -> Vec<String> {
         let spaces = " ".repeat(size - i - 1);
         let letter = (b'A' + i as u8) as char;
         if i == 0 {
-            diamond.push(format!("{}{}", spaces, letter));
+            diamond.push(format!("{}{}{}", spaces, letter, spaces));
         } else {
-            let line = format!("{}{}{}{}", spaces, letter, " ".repeat(i * 2 - 1), letter);
+            let middle_spaces = " ".repeat(i * 2 - 1);
+            let line = format!("{}{}{}{}{}", spaces, letter, middle_spaces, letter, spaces);
             diamond.push(line);
         }
     }
@@ -21,9 +20,10 @@ pub fn get_diamond(c: char) -> Vec<String> {
         let spaces = " ".repeat(size - i - 1);
         let letter = (b'A' + i as u8) as char;
         if i == 0 {
-            diamond.push(format!("{}{}", spaces, letter));
+            diamond.push(format!("{}{}{}", spaces, letter, spaces));
         } else {
-            let line = format!("{}{}{}{}", spaces, letter, " ".repeat(i * 2 - 1), letter);
+            let middle_spaces = " ".repeat(i * 2 - 1);
+            let line = format!("{}{}{}{}{}", spaces, letter, middle_spaces, letter, spaces);
             diamond.push(line);
         }
     }
