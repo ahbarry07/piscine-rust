@@ -3,7 +3,7 @@ pub fn spell(n: u64) -> String {
     let teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
     let tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
     let thousands = ["", "thousand", "million"];
-    println!("nyyierf {}", n);
+   
     if n == 0{
         return "zero".to_string()
     } else if n < 10 {
@@ -25,11 +25,14 @@ pub fn spell(n: u64) -> String {
         }
         return format!("{} hundred", ones[hundreds as usize])
     } else {
-        let thousands_index = (n / 1000) as usize;
-        let remainder = n % 1000;
-        if remainder != 0{
-            return format!("{} {} {}", ones[thousands_index as usize], thousands[1], spell(remainder));
+        for (index, &thousand) in thousands.iter().enumerate().rev() {
+            let base = 10u64.pow((index as u32 + 1) * 3);
+            if n >= base {
+                let prefix = spell(n / base);
+                let suffix = if n % base == 0 { "".to_string() } else { format!(" {}", spell(n % base)) };
+                return format!("{} {}{}", prefix, thousand, suffix);
+            }
         }
-        return format!("{} {}", ones[thousands_index as usize], thousands[1])
+        unreachable!(); 
     }
 }
