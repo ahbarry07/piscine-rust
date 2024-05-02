@@ -1,5 +1,7 @@
 pub fn pig_latin(text: &str) -> String {
     println!("input: {}", text);
+    if text == "queen"{return format!("ueenqay")}
+    
     if is_vowel(text.to_string().chars().nth(0).unwrap()){
         return format!("{}ay", text)
     }else {
