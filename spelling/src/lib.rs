@@ -2,7 +2,7 @@ pub fn spell(n: u64) -> String {
     let ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
     let teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
     let tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
-    let thousands = ["", "thousand", "million"];
+    let thousands = ["thousand", "million"];
    
     if n == 0{
         return "zero".to_string()
