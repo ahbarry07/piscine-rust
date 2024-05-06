@@ -18,6 +18,7 @@ impl GameSession {
         )
     }
     pub fn read_winner(&self) -> (String, u16) {
+        println!("read winn: {:?}", self);
         if self.p1.1 > self.p2.1{
             return self.p1.clone()
         }else if self.p1.1 < self.p2.1{
@@ -28,6 +29,7 @@ impl GameSession {
         return ("Same score! tied".to_string(), 0)
     }
     pub fn update_score(&mut self, user_name: String) {
+        println!("update {:?}, {}",self, user_name);
         let total_score = self.p1.1 + self.p2.1;
         if user_name == self.p1.0 && total_score < 5{
             self.p1.1 +=1
