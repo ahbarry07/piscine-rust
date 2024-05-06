@@ -29,21 +29,17 @@ impl GameSession {
         return ("Same score! tied".to_string(), 0)
     }
     pub fn update_score(&mut self, user_name: String) {
-        println!("update {:?}, {}",self, user_name);
-        if self.nb_games > 0 {
-            let player = if user_name == self.p1.0 {
-                &mut self.p1
-            } else if user_name == self.p2.0 {
-                &mut self.p2
-            } else {
-                return; // If the received name doesn't match either player, do nothing
-            };
+        // println!("update {:?}, {}",self, user_name);
+        let diff = if self.p1.1 > self.p2.1 {self.p1.1} else {self.p2.1};
 
-            player.1 += 1;
-
-            if player.1 >= 3 || self.nb_games == 0 {
-                self.nb_games = 0;
+        if self.nb_games > 0 && self.nb_games%diff == 0{
+            // let total_score = self.p1.1 + self.p2.1;
+            if user_name == self.p1.0 {
+                self.p1.1 +=1
+            }else if user_name == self.p2.0 {
+                self.p2.1 += 1
             }
+            self.nb_games -= 1
         }
     }
     pub fn delete(self) -> String {
