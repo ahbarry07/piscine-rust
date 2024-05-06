@@ -35,7 +35,7 @@ impl GameSession {
 
         if user_name == self.p1.0 && total_score < self.nb_games || (self.nb_games - total_score) + min >= max{
             self.p1.1 +=1
-        }else if user_name == self.p2.0 && total_score < self.nb_games{
+        }else if user_name == self.p2.0 && total_score < self.nb_games || (self.nb_games - total_score) + min >= max{
             self.p2.1 += 1
         }
     }
