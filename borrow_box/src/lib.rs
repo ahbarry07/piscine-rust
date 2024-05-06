@@ -33,9 +33,9 @@ impl GameSession {
         let total_score = self.p1.1 + self.p2.1;
         let (max, min) = if self.p1.1 > self.p2.1 {(self.p1.1, self.p2.1)} else {(self.p2.1, self.p1.1)};
 
-        if user_name == self.p1.0 && total_score < self.nb_games || (self.nb_games - total_score) + min >= max{
+        if user_name == self.p1.0 && total_score < self.nb_games && (self.nb_games - total_score) + min >= max{
             self.p1.1 +=1
-        }else if user_name == self.p2.0 && total_score < self.nb_games || (self.nb_games - total_score) + min >= max{
+        }else if user_name == self.p2.0 && total_score < self.nb_games && (self.nb_games - total_score) + min >= max{
             self.p2.1 += 1
         }
     }
