@@ -31,9 +31,9 @@ impl GameSession {
     pub fn update_score(&mut self, user_name: String) {
         println!("update {:?}, {}",self, user_name);
         let total_score = self.p1.1 + self.p2.1;
-        if user_name == self.p1.0 && total_score < 5{
+        if user_name == self.p1.0 && total_score < self.nb_games{
             self.p1.1 +=1
-        }else if user_name == self.p2.0 && total_score < 5{
+        }else if user_name == self.p2.0 && total_score < self.nb_games{
             self.p2.1 += 1
         }
     }
