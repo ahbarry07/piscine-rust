@@ -2,8 +2,8 @@
 pub fn scytale_cipher(message: String, i: u32) -> String {
     
     let mut vec : Vec<Vec<char>> = Vec::new();
-
     let mut stock : Vec<char> = Vec::new();
+
     for (size ,ch) in message.chars().enumerate(){
         stock.push(ch);
         if (size as u32)% i == i - 1{
@@ -19,7 +19,7 @@ pub fn scytale_cipher(message: String, i: u32) -> String {
     }
 
     let mut result = String::new();
-    let mut row_index = 0;
+    // let mut row_index = 0;
     let mut column_index = 0;
 
     loop {
@@ -33,14 +33,8 @@ pub fn scytale_cipher(message: String, i: u32) -> String {
         if !found {
             break;
         }
-        row_index += 1;
+        // row_index += 1;
         column_index += 1;
     }
     result.as_str().trim().to_string()
 }
-
-//[['s', 'c', 'y', 't', 'a', 'l'], ['e', ' ', 'C', 'o', 'd', 'e']]
-
-//[['s', 'c', 'y', 't', 'a', 'l', 'e', ' '], ['C', 'o', 'd', 'e']]
-// "sec yCtoadle"
-// "sCcoydtea l e"
