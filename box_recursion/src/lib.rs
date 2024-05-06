@@ -27,7 +27,13 @@ impl WorkEnvironment {
     }
 
     pub fn remove_worker(&mut self) -> Option<String> {
-        self.grade.take().map(|w| w.name)
+        match self.grade.take() {
+            Some(worker) => {
+                self.grade = worker.next;
+                Some(worker.name)
+            }
+            None => None,
+        }
     }
 
     pub fn last_worker(&self) -> Option<(String, String)> {
