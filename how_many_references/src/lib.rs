@@ -13,11 +13,7 @@ impl Node {
     }
 
     pub fn rm_all_ref(&mut self, element: Rc<String>) {
-        if let Some(pos) = self.ref_list.iter().position(|nod| 
-            *nod != element && Rc::strong_count(&nod) == Rc::strong_count(&element)
-        ){
-            self.ref_list.remove(pos);
-        }
+        self.ref_list.retain(|r| !Rc::ptr_eq(r, &element));
     }
 
 }
