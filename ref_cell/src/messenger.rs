@@ -20,7 +20,7 @@ impl <'a> Tracker <'a>{
     pub fn set_value(&self, val: &Rc<usize>){
         let refs = Rc::strong_count(val);
         let per = (refs * 100) / self.max;
-        // println!("pouecere {:?}, val: {}, max: {}", per, *val, self.max);
+        println!("value input {:?}", *val);
         if per  >= 100{
             self.logger.error("Error: you are over your quota!")
         }else if per >= 70 && per < 100{
