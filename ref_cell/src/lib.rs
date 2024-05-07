@@ -21,7 +21,7 @@ impl Worker{
 
 impl Logger for Worker{
     fn warning(&self, msg: &str) {
-        self.mapped_messages.borrow_mut().insert("Warning".to_string(), msg.to_string());
+        self.mapped_messages.borrow_mut().insert("".to_string(), msg.to_string());
         self.all_messages.borrow_mut().push(msg.to_string());
     }
 

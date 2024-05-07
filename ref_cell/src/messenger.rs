@@ -22,9 +22,6 @@ impl <'a> Tracker <'a>{
         let per = (refs * 100) / self.max;
         println!("value input {:?}", *val);
         
-        if **val == 1000{
-            self.logger.warning(&format!("you have used up over {}% of your quota! Proceeds with precaution", per))
-        }
         if per  >= 100{
             self.logger.error("Error: you are over your quota!")
         }else if per >= 70 && per < 100{
