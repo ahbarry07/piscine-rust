@@ -20,21 +20,16 @@ impl <'a> Tracker <'a>{
     pub fn set_value(&self, val: &Rc<usize>){
         let refs = Rc::strong_count(val);
         let per = (refs * 100) / self.max;
-        let mut prefix = "";
-        if **val == 1000 && per >= 100 {prefix="Error: ";}
-        if **val == 1000 && per >= 70 && per < 100 {prefix="Warning: ";}
         println!("value input {:?}", *val);
         if per  >= 100{
-            self.logger.error((&format!("{}you are over your quota!", prefix)))
+            self.logger.error("Error: you are over your quota!")
         }else if per >= 70 && per < 100{
-            self.logger.warning(&format!("{}you have used up over {}% of your quota! Proceeds with precaution", prefix ,per))
+            self.logger.warning(&format!("Warning: you have used up over {}% of your quota! Proceeds with precaution", per))
         }
     }
 
     pub fn peek(&self, value:  &Rc<usize>){
-        let mut prefix = "";
-        if **value == 1000 {prefix="Info: ";}
         let refs = Rc::strong_count(value);
-        self.logger.info(&format!("{}you are using up to {}% of your quota", prefix,((refs * 100) / self.max)))
+        self.logger.info(&format!("Info: you are using up to {}% of your quota", ((refs * 100) / self.max)))
     }
 }
