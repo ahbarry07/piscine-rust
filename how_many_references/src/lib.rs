@@ -14,7 +14,7 @@ impl Node {
 
     pub fn rm_all_ref(&mut self, element: Rc<String>) {
         self.ref_list.retain(|nod|{
-            *nod != element && Rc::strong_count(&nod) == Rc::strong_count(&element)
+            (*nod != element && Rc::strong_count(&nod) == Rc::strong_count(&element)) || (*nod == element && Rc::strong_count(&nod) != Rc::strong_count(&element))
         })    
     }
 
