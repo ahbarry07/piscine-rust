@@ -13,9 +13,11 @@ impl Node {
     }
 
     pub fn rm_all_ref(&mut self, element: Rc<String>) {
-        self.ref_list.retain(|nod|{
-            (*nod != element && Rc::strong_count(&nod) == Rc::strong_count(&element)) || (*nod == element && Rc::strong_count(&nod) != Rc::strong_count(&element))
-        })    
+        if let Some(pos) = self.ref_list.iter().position(|nod| 
+            *nod != element && Rc::strong_count(&nod) == Rc::strong_count(&element)
+        ){
+            self.ref_list.remove(pos);
+        }
     }
 
 }
