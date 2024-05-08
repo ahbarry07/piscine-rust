@@ -27,7 +27,7 @@ impl <'a> Tracker <'a>{
         if **val == 115 && per >= 100 {prefix ="Error: "}
         if **val == 115 && per >= 70 && per < 100 {prefix = "Warning: "}  
 
-        if per  >= 100{1
+        if per  >= 100{
             self.logger.error(&format!("{}you are over your quota!", prefix));
         }else if per >= 70 && per < 100{
             self.logger.warning(&format!("{}you have used up over {}% of your quota! Proceeds with precaution", prefix, per))
