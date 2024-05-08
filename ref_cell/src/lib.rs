@@ -25,12 +25,12 @@ impl Logger for Worker{
     }
 
     fn error(&self, msg: &str) {
-        self.mapped_messages.borrow_mut().insert("Error".to_string(), msg.to_string())replace("Error: ", "");
+        self.mapped_messages.borrow_mut().insert("Error".to_string(), msg.to_string().replace("Error: ", ""));
         self.all_messages.borrow_mut().push(format!("{}", msg))
     }
 
     fn info(&self, msg: &str) {
-        self.mapped_messages.borrow_mut().insert("Info".to_string(), msg.to_string()replace("Info: ", ""));
+        self.mapped_messages.borrow_mut().insert("Info".to_string(), msg.to_string().replace("Info: ", ""));
         self.all_messages.borrow_mut().push(format!("{}", msg))
     }
 }
