@@ -25,7 +25,7 @@ impl Workers {
    
     }
     pub fn add_drop(&self, id: usize) {
-        // let thread = self.states.borrow_mut();
+       
         if self.states.borrow_mut()[id] == true{
             panic!("{} is already dropped", id);
         }else {
