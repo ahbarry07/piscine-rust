@@ -20,17 +20,17 @@ impl Worker{
 
 impl Logger for Worker{
     fn warning(&self, msg: &str) {
-        self.mapped_messages.borrow_mut().insert("Warning".to_string(), msg.to_string().replace("Warning: ", ""));
+        self.mapped_messages.borrow_mut().insert("Warning".to_string(), msg.replace("Warning: ", ""));
         self.all_messages.borrow_mut().push(format!("{}", msg));
     }
 
     fn error(&self, msg: &str) {
-        self.mapped_messages.borrow_mut().insert("Error".to_string(), msg.to_string().replace("Error: ", ""));
+        self.mapped_messages.borrow_mut().insert("Error".to_string(), msg.replace("Error: ", ""));
         self.all_messages.borrow_mut().push(format!("{}", msg))
     }
 
     fn info(&self, msg: &str) {
-        self.mapped_messages.borrow_mut().insert("Info".to_string(), msg.to_string().replace("Info: ", ""));
+        self.mapped_messages.borrow_mut().insert("Info".to_string(), msg.replace("Info: ", ""));
         self.all_messages.borrow_mut().push(format!("{}", msg))
     }
 }
