@@ -1,6 +1,5 @@
-workspace = { members = ["src/drop_the_thread"] }
 [package]
-name = "ref_cell"
+name = "drop_the_thread"
 version = "0.1.0"
 edition = "2021"
 

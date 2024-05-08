@@ -1,5 +1,6 @@
 pub use std::rc::Rc;
 pub use std::cell::RefCell;
+
 pub trait Logger{
     fn warning(&self, msg: &str); 
     fn info(&self, msg: &str);
@@ -21,11 +22,12 @@ impl <'a> Tracker <'a>{
         println!("value input {:?}", *val);
         let refs = Rc::strong_count(val);
         let per = (refs * 100) / self.max;
+       
         let mut prefix = "";
         if **val == 115 && per >= 100 {prefix ="Error: "}
         if **val == 115 && per >= 70 && per < 100 {prefix = "Warning: "}  
 
-        if per  >= 100{
+        if per  >= 100{1
             self.logger.error(&format!("{}you are over your quota!", prefix));
         }else if per >= 70 && per < 100{
             self.logger.warning(&format!("{}you have used up over {}% of your quota! Proceeds with precaution", prefix, per))
