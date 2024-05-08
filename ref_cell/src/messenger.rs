@@ -24,7 +24,7 @@ impl <'a> Tracker <'a>{
         let per = (refs * 100) / self.max;
        
         let mut prefix = "";
-        if **val == 115 && per >= 100 {prefix ="Error: "}
+        // if **val == 115 && per >= 100 {prefix ="Error: "}
         if **val == 115 && per >= 70 && per < 100 {prefix = "Warning: "}  
 
         if per  >= 100{1
