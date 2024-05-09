@@ -37,7 +37,7 @@ impl Food for Fruit {
 impl Food for Meat {
     fn gives(&self) -> f64 {
         let protein_content = self.weight_in_kg * (1.0 - self.fat_content);
-        let fat_strength = self.fat_content * 9.0 * protein_content;
+        let fat_strength = self.weight_in_kg * 9.0 * self.fat_content;
         let protein_strength = protein_content * 4.0;
         fat_strength + protein_strength
     }
