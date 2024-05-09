@@ -18,7 +18,6 @@ pub struct BloodType {
 	pub rh_factor: RhFactor,
 }
 
-use std::borrow::Borrow;
 use std::cmp::{Ord, Ordering};
 
 use std::str::FromStr;
@@ -93,22 +92,18 @@ impl BloodType {
 		match (self.antigen.clone(), self.rh_factor.clone()) {
 			(Antigen::A, RhFactor::Positive) => match (other.antigen.clone(), other.rh_factor.clone()){
 				(Antigen::A | Antigen::O, RhFactor::Positive | RhFactor::Negative) => true,
-				// (Antigen::O, RhFactor::Positive | RhFactor::Negative) => true,
 				_ => false
 			}
 			(Antigen::A, RhFactor::Negative) => match (other.antigen.clone(), other.rh_factor.clone()){
 				(Antigen::A | Antigen::O, RhFactor::Negative) => true,
-				// (Antigen::O, RhFactor::Negative) => true,
 				_ => false
 			}
 			(Antigen::B, RhFactor::Positive) => match (other.antigen.clone(), other.rh_factor.clone()){
 				(Antigen::B | Antigen::O, RhFactor::Positive | RhFactor::Negative) => true,
-				// (Antigen::O, RhFactor::Positive | RhFactor::Negative) => true,
 				_ => false
 			}
 			(Antigen::B, RhFactor::Negative) => match (other.antigen.clone(), other.rh_factor.clone()){
 				(Antigen::B | Antigen::O, RhFactor::Negative) => true,
-				// (Antigen::O, RhFactor::Negative) => true,
 				_ => false
 			}
 			(Antigen::AB, RhFactor::Positive) => match (other.antigen.clone(), other.rh_factor.clone()) {
