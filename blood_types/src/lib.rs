@@ -18,6 +18,7 @@ pub struct BloodType {
 	pub rh_factor: RhFactor,
 }
 
+use std::borrow::Borrow;
 use std::cmp::{Ord, Ordering};
 
 use std::str::FromStr;
@@ -126,7 +127,6 @@ impl BloodType {
 				(Antigen::O, RhFactor::Negative) => true,
 				_ => false
 			}
-			_ => todo!()
 		}
 	}
 
@@ -169,7 +169,7 @@ impl BloodType {
         let mut donors = Vec::new();
 
         for blood_type in all_blood_types {
-            if blood_type.can_receive_from(self) {
+            if self.can_receive_from(&blood_type) {
                 donors.push(blood_type);
             }
         }
@@ -216,8 +216,9 @@ impl BloodType {
         let mut recipients = Vec::new();
 
         for blood_type in all_blood_types {
-            if self.can_receive_from(&blood_type) {
-                recipients.push(blood_type);
+            if blood_type.can_receive_from(&self) {
+				let a = blood_type;
+                recipients.push(a);
             }
         }
 
