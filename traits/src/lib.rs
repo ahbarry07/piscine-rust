@@ -1,5 +1,4 @@
-use core::fmt;
-use std::fmt::write;
+use std::fmt;
 
 #[derive(Debug)]
 pub struct Player {
