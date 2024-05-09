@@ -20,6 +20,7 @@ impl AppendStr for StringValue {
     }
 
     fn append_number(&mut self, nb_to_append: f64) -> Self {
+        println!("value {}, nb to append: {}", self.value, nb_to_append);
         self.value.push_str(&nb_to_append.to_string());
         self.clone()
     }
