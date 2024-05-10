@@ -7,7 +7,15 @@ pub trait Scalar: Sized + Copy + Add<Self, Output = Self> + Mul<Self, Output = S
     fn zero() -> Self;
     fn one() -> Self;
 }
+impl Scalar for i64 {
+    fn zero() -> Self {
+        0
+    }
 
+    fn one() -> Self {
+        1
+    }
+}
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Vector<T: Scalar>(pub Vec<T>);
