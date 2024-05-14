@@ -35,7 +35,7 @@ impl <T: Scalar<Item = T> + Mul<Output = T> + Copy + std::ops::AddAssign> Mul fo
 
 		for i in 0..self.0.len() {
 			for j in 0..rhs.0[0].len() {
-				for k in 0..rhs.0.len() {
+				for k in 0..self.0[0].len() {
 					result[i][j] += self.0[i][k] * rhs.0[k][j];
 				}
 			}
