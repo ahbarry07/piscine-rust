@@ -1,55 +1,53 @@
-pub mod matrix_ops{
 
-    pub use lalgebra_scalar::*;
+pub mod matrix_ops{
+    use lalgebra_scalar::Scalar;
     use std::ops::{Add, Sub};
 
-    pub mod matrix_ops{
-
-        #[derive(Debug, PartialEq, Eq)]
-        pub struct Matrix<T>(pub Vec<Vec<T>>);
-        
-        impl<T: Scalar + Add<Output = T> + Copy> Add for Matrix<T> {
-            type Output = Option<Matrix<T>>;
-        
-            fn add(self, other: Matrix<T>) -> Option<Matrix<T>> {
-                if self.0.len() != other.0.len() || self.0[0].len() != other.0[0].len() {
-                    return None; 
-                }
-        
-                let mut result = Vec::with_capacity(self.0.len());
-                for i in 0..self.0.len() {
-                    let mut row = Vec::with_capacity(self.0[i].len());
-                    for j in 0..self.0[i].len() {
-                        row.push(self.0[i][j] + other.0[i][j]);
-                    }
-                    result.push(row);
-                }
-                Some(Matrix(result))
+    #[derive(Debug, PartialEq, Eq)]
+    pub struct Matrix<T>(pub Vec<Vec<T>>);
+    
+    impl<T: Scalar + Add<Output = T> + Copy> Add for Matrix<T> {
+        type Output = Option<Matrix<T>>;
+    
+        fn add(self, other: Matrix<T>) -> Option<Matrix<T>> {
+            if self.0.len() != other.0.len() || self.0[0].len() != other.0[0].len() {
+                return None; 
             }
-        }
-        
-        impl<T: Scalar + Sub<Output = T> + Copy> Sub for Matrix<T> {
-            type Output = Option<Matrix<T>>;
-        
-            fn sub(self, other: Matrix<T>) -> Option<Matrix<T>> {
-                if self.0.len() != other.0.len() || self.0[0].len() != other.0[0].len() {
-                    return None;
+    
+            let mut result = Vec::with_capacity(self.0.len());
+            for i in 0..self.0.len() {
+                let mut row = Vec::with_capacity(self.0[i].len());
+                for j in 0..self.0[i].len() {
+                    row.push(self.0[i][j] + other.0[i][j]);
                 }
-            
-                let mut result = Vec::with_capacity(self.0.len());
-                for i in 0..self.0.len() {
-                    let mut row = Vec::with_capacity(self.0[i].len());
-                    for j in 0..self.0[i].len() {
-                        row.push(self.0[i][j] - other.0[i][j]);
-                    }
-                    result.push(row);
-                }
-                Some(Matrix(result))
+                result.push(row);
             }
+            Some(Matrix(result))
         }
     }
-
+    
+    impl<T: Scalar + Sub<Output = T> + Copy> Sub for Matrix<T> {
+        type Output = Option<Matrix<T>>;
+    
+        fn sub(self, other: Matrix<T>) -> Option<Matrix<T>> {
+            if self.0.len() != other.0.len() || self.0[0].len() != other.0[0].len() {
+                return None;
+            }
+        
+            let mut result = Vec::with_capacity(self.0.len());
+            for i in 0..self.0.len() {
+                let mut row = Vec::with_capacity(self.0[i].len());
+                for j in 0..self.0[i].len() {
+                    row.push(self.0[i][j] - other.0[i][j]);
+                }
+                result.push(row);
+            }
+            Some(Matrix(result))
+        }
+    }
 }
+
+
 
 
 // fn do_operation<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + Copy>(mat1: Matrix<T>, mat2: Matrix<T>, sign: &str) -> Option<Matrix<T>>{

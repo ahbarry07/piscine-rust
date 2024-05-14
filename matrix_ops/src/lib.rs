@@ -1,1 +1,2 @@
-// pub use  matrix_ops::*;
+pub mod ops;
+pub use ops::*;
