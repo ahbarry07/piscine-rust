@@ -31,7 +31,7 @@ impl<T: Scalar + Sub<Output = T> + Copy> Sub for Matrix<T> {
         if self.0.len() != other.0.len() || self.0[0].len() != other.0[0].len() {
             return None;
         }
-       
+        
         let mut result = Vec::with_capacity(self.0.len());
         for i in 0..self.0.len() {
             let mut row = Vec::with_capacity(self.0[i].len());
@@ -43,6 +43,7 @@ impl<T: Scalar + Sub<Output = T> + Copy> Sub for Matrix<T> {
         Some(Matrix(result))
     }
 }
+
 
 
 

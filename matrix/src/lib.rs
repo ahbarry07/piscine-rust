@@ -1,5 +1,5 @@
 pub use lalgebra_scalar::*;
-
+// pub mod matrix_ops;
 #[derive(Debug, PartialEq, Eq)]
 pub struct Matrix<T>(pub Vec<Vec<T>>);
 
