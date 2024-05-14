@@ -36,7 +36,6 @@ impl From<u32> for RomanNumber {
 		let mut num = value;
 		let mut roman_digits = Vec::new();
         let  powers_of_ten = vec![1000, 100, 10, 1];
-        let mut index = 0;
 
 		if num == 0 {
             return RomanNumber(vec![RomanDigit::Nulla]);
@@ -79,19 +78,3 @@ impl From<u32> for RomanNumber {
 	}
 	
 }
-
-// pub fn roman_number(value: u32) -> String {
-// 	let mut num = value;
-//     let int_array = vec![1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
-//     let roman_array = vec!["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
-//     let mut roman_number = String::new();
-
-//     for i in 0..int_array.len() {
-//         while num >= int_array[i] {
-//             num -= int_array[i];
-//             roman_number.push_str(roman_array[i]);
-//         }
-//     }
-
-//     roman_number
-// }
