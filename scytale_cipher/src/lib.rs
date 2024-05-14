@@ -6,7 +6,7 @@ pub fn scytale_cipher(message: String, i: u32) -> String {
 
     for (size ,ch) in message.chars().enumerate(){
         stock.push(ch);
-        if (size as u32)% i == i - 1{
+        if (size as u32) % i == i - 1{
             vec.push(stock.clone());
             stock.clear();
         }

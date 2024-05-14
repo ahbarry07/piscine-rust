@@ -19,8 +19,8 @@ impl WorkEnvironment {
 
     pub fn add_worker(&mut self, role: String, name: String) {
         let new_worker = Box::new(Worker{
-            role: role,
-            name: name,
+            role,
+            name,
             next: self.grade.take()
         });
         self.grade = Some(new_worker)

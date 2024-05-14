@@ -35,6 +35,7 @@ impl From<u32> for RomanNumber {
 	fn from(value: u32) -> Self {
 		let mut num = value;
 		let mut roman_digits = Vec::new();
+        let mut index = 0;
         let  powers_of_ten = vec![1000, 100, 10, 1];
 
 		if num == 0 {
