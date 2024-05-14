@@ -1,7 +1,7 @@
 use lalgebra_scalar::*;
 use std::ops::Mul;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Matrix<T>(pub Vec<Vec<T>>);
 
 impl <T: Copy> Matrix<T> {
