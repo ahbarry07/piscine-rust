@@ -30,7 +30,7 @@ impl <T: Scalar<Item = T> + Mul<Output = T> + Copy + std::ops::AddAssign> Mul fo
 	type Output = Option<Matrix<T>>;
 
 	fn mul(self, rhs: Self) -> Self::Output {
-		
+		println!("self: {:?}, rhs: {:?}", self, rsh);
 		let mut result: Vec<Vec<T>> = vec![vec![T::zero(); self.0[0].len()]; self.0.len()];
 
 		for i in 0..self.0.len() {
