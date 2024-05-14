@@ -43,39 +43,3 @@ impl<T: Scalar + Sub<Output = T> + Copy> Sub for Matrix<T> {
         Some(Matrix(result))
     }
 }
-
-
-
-
-// fn do_operation<T: std::ops::Add<Output = T> + std::ops::Sub<Output = T> + Copy>(mat1: Matrix<T>, mat2: Matrix<T>, sign: &str) -> Option<Matrix<T>>{
-
-//     let mut result = Vec::with_capacity(mat1.0.len());
-
-//     if mat1.0.len() != mat2.0.len() || mat1.0[0].len() != mat2.0[0].len() {
-//         return None
-//     }
-
-//     match sign{
-//         "+" => {
-//             for i in 0..mat1.0.len() {
-//                 let mut row = Vec::with_capacity(mat1.0[i].len());
-//                 for j in 0..mat1.0[i].len() {
-//                     row.push(mat1.0[i][j] + mat2.0[i][j]);
-//                 }
-//                 result.push(row);
-//             }
-//         },
-//         "-" => {
-//             for i in 0..mat1.0.len() {
-//                 let mut row = Vec::with_capacity(mat1.0[i].len());
-//                 for j in 0..mat1.0[i].len() {
-//                     row.push(mat1.0[i][j] - mat2.0[i][j]);
-//                 }
-//                 result.push(row);
-//             }
-//         },
-//         _ => unreachable!()
-//     }
-   
-//     Some(Matrix(result))
-// }
