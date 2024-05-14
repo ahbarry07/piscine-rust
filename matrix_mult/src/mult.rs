@@ -31,15 +31,15 @@ impl <T: Scalar<Item = T> + Mul<Output = T> + Copy + std::ops::AddAssign> Mul fo
 
 	fn mul(self, rhs: Self) -> Self::Output {
 		
-		let mut result: Vec<Vec<T>> = vec![vec![T::zero(); self.0[0].len()]; self.0.len()];
+		let mut result: Vec<Vec<T>> = vec![vec![T::zero(); rhs.0[0].len()]; self.0.len()];
         println!("matrix_mult module");
-		// for i in 0..self.0.len() {
-		// 	for j in 0..rhs.0[0].len() {
-		// 		for k in 0..self.0[0].len() {
-		// 			result[i][j] += self.0[i][k] * rhs.0[k][j];
-		// 		}
-		// 	}
-		// }
+		for i in 0..self.0.len() {
+			for j in 0..rhs.0[0].len() {
+				for k in 0..rhs.0.len() {
+					result[i][j] += self.0[i][k] * rhs.0[k][j];
+				}
+			}
+		}
 		Some(Matrix(result))
 	}
 }
