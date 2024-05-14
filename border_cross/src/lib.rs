@@ -38,7 +38,7 @@ impl <'a>Vehicle<'a> for Car<'a> {
 	}
 }
 
-pub fn all_models<'a>(list: Vec<&dyn Vehicle<'a>>) -> Vec<&'a str> {
+pub fn all_models<'a>(list: Vec<&'a dyn Vehicle<'a>>) -> Vec<&'a str> {
 
 	let mut models = Vec::new();
 
