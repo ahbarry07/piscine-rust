@@ -15,12 +15,12 @@ pub struct Truck<'a> {
 	pub load_tons: u32,
 }
 
-pub trait Vehicle<'a> {
-	fn model(&self) -> &'a str;
+pub trait Vehicle {
+	fn model(&self) -> &str;
 	fn year(&self) -> u32;
 }
 
-impl <'a>Vehicle<'a> for Truck<'a> {
+impl<'a> Vehicle for Truck<'a>{
 	fn model(&self) -> &'a str {
 		self.model
 	}
@@ -29,19 +29,18 @@ impl <'a>Vehicle<'a> for Truck<'a> {
 	}
 }
 
-impl <'a>Vehicle<'a> for Car<'a> {
+impl<'a> Vehicle for Car<'a> {
 	fn model(&self) -> &'a str {
 		self.model
 	}
 	fn year(&self) -> u32 {
 		self.year
 	}
+
 }
 
-pub fn all_models<'a>(list: Vec<& dyn Vehicle>) -> Vec<&'a str> {
+pub fn all_models(list: Vec<& dyn Vehicle>) -> Vec<&str> {
 
 	list.iter().map(|vehicle| vehicle.model()).collect()
 }
 
-	models.clone()
-}
