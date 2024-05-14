@@ -38,13 +38,13 @@ impl <'a>Vehicle<'a> for Car<'a> {
 	}
 }
 
-fn all_models<'a>(list: Vec<&'a dyn Vehicle>) -> Vec<&'a str> {
+fn all_models<'a>(list: Vec<&dyn Vehicle<'a>>) -> Vec<&'a str> {
 
-	let mut models: Vec<&'a str> = Vec::new();
+	let mut models = Vec::new();
 
 	for vehic in list{
 		models.push(vehic.model())
 	}
 
-	models
+	models.clone()
 }
