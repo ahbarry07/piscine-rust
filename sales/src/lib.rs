@@ -26,29 +26,29 @@ impl Cart {
         }
     }
     pub fn generate_receipt(&mut self) -> Vec<f32> {
-        println!("self {:?}", self);
-        // let discount = self.get_discount();
-        // let mut receipt = self.items.iter()
-        //     .map(|(_, price)| price - discount)
-        //     .collect::<Vec<f32>>();
-        // self.receipt = receipt.clone();
         
-        // receipt.sort_by(|a, b| a.partial_cmp(b).unwrap());
-        
-        // receipt.iter_mut().for_each(|price| *price = format!("{:.2}", *price).parse::<f32>().unwrap()); // Formater avec deux chiffres après la virgule
-        // self.receipt.iter_mut().for_each(|price| *price = format!("{:.2}", *price).parse::<f32>().unwrap());
-        
-        // receipt 
-        vec![]
-    
-    }
-    fn get_discount(&mut self) -> f32 {
-        let mut min_price = f32::MAX;
-        for (_, price) in self.items.iter() {
-            min_price = min_price.min(*price);
-        }
+        let l = self.items.len();
+        let items: Vec<f32> = self.items.iter().map(|e| e.1).collect();
+        let mut cp = items.clone();
 
-        let discount_amount = min_price * 0.05;  // 5% discount
-        discount_amount.clamp(0.01, f32::MAX)  // Ensure discount is at least 0.01
+        if l < 3 {
+            return items;
+        } else {
+            // somme total
+            let sum1: f32 = cp.iter().sum();
+            cp.sort_by(|a, b| a.partial_cmp(b).unwrap());
+
+            // la somme des articles offerts
+            let sum2: f32 = cp[0..l / 3].iter().sum();
+
+            let percentage = (sum2 / sum1) * 100.0;
+            let apply_percentage = |x| {
+                let f: f32 = x - x * percentage / 100.0;
+                (f * 100.0).round() / 100.0
+            };
+            let res: Vec<f32> = cp.iter().map(apply_percentage).collect();
+            self.receipt = res.clone();
+            res
+        }
     }
 }
