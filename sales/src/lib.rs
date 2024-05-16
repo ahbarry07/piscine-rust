@@ -27,22 +27,27 @@ impl Cart {
     }
     pub fn generate_receipt(&mut self) -> Vec<f32> {
        
-            let discount = self.get_discount();
-            let mut receipt = self.items.iter()
-                .map(|(_, price)| price - discount)
-                .collect::<Vec<f32>>();
-            self.receipt = receipt.clone();
-            receipt.sort_by(|a, b| a.partial_cmp(b).unwrap());
-            receipt
+        let discount = self.get_discount();
+        let mut receipt = self.items.iter()
+            .map(|(_, price)| price - discount)
+            .collect::<Vec<f32>>();
+        self.receipt = receipt.clone();
+        
+        receipt.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        
+        receipt.iter_mut().for_each(|price| *price = format!("{:.2}", *price).parse::<f32>().unwrap()); // Formater avec deux chiffres après la virgule
+        self.receipt.iter_mut().for_each(|price| *price = format!("{:.2}", *price).parse::<f32>().unwrap());
+        
+        receipt
     
+    }
+    fn get_discount(&mut self) -> f32 {
+        let mut min_price = f32::MAX;
+        for (_, price) in self.items.iter() {
+            min_price = min_price.min(*price);
         }
-        fn get_discount(&mut self) -> f32 {
-            let mut min_price = f32::MAX;
-            for (_, price) in self.items.iter() {
-                min_price = min_price.min(*price);
-            }
-    
-            let discount_amount = min_price * 0.05;  // 5% discount
-            discount_amount.clamp(0.01, f32::MAX)  // Ensure discount is at least 0.01
-        }
+
+        let discount_amount = min_price * 0.05;  // 5% discount
+        discount_amount.clamp(0.01, f32::MAX)  // Ensure discount is at least 0.01
+    }
 }
