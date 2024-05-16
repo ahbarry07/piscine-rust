@@ -33,8 +33,7 @@ impl Collatz {
 
 pub fn collatz(n: u64) -> usize {
     
-    Collatz::new(n).count() + 1
-
+    Collatz::new(n).count()
     // let mut count = 0;
     // let mut m = n;
     // while m != 1 {
