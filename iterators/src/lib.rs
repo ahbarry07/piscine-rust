@@ -1,4 +1,4 @@
-#[derive(Debug, Copy, Clone, PartialEq)]
+#[derive(Copy, Clone)]
 pub struct Collatz {
     pub v: u64,
 }
@@ -24,7 +24,7 @@ impl Collatz {
     }
 }
 
-pub fn collatz(n: u64) -> Collatz {
+pub fn collatz(n: u64) -> usize {
     
-    Collatz{v: Collatz::new(n).count() as u64}
+    Collatz::new(n).count()
 }
