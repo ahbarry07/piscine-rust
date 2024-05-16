@@ -7,14 +7,16 @@ impl Iterator for Collatz {
     type Item = Collatz;
 
     fn next(&mut self) -> Option<Self::Item> {
+        let current_v = self.v;
         if self.v == 1 {
-            None
+            self.v = 0; 
+            Some(Collatz { v: current_v })
         } else if self.v % 2 == 0 {
             self.v /= 2;
-            Some(Collatz { v: self.v })
+            Some(Collatz { v: current_v })
         } else {
             self.v = 3 * self.v + 1;
-            Some(Collatz { v: self.v })
+            Some(Collatz { v: current_v })
         }
     }
 }
