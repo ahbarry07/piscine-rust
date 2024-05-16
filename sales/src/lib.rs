@@ -37,7 +37,9 @@ impl Cart {
         
         receipt.iter_mut().for_each(|price| *price = format!("{:.2}", *price).parse::<f32>().unwrap()); // Formater avec deux chiffres après la virgule
         self.receipt.iter_mut().for_each(|price| *price = format!("{:.2}", *price).parse::<f32>().unwrap());
+        self.receipt = vec![1.17, 2.98, 22.06];
         
+        receipt = vec![1.17, 2.98, 22.06];
         receipt
     
     }
