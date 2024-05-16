@@ -34,11 +34,18 @@ impl Collatz {
 pub fn collatz(n: u64) -> usize {
     
     // Collatz::new(n).count()
-    let mut len = 1;
+    let mut count = 0;
     let mut m = n;
-     while m > 1 {
-         m = if m % 2 == 0 { m / 2 } else { 3 * m + 1 };
-         len += 1;
-     }
-     len
+    while m != 1 {
+        if m % 2 == 0 {
+            m /= 2;
+        } else {
+            m = 3 * m + 1;
+        }
+        count += 1;
+    }
+    if m == 1{
+        count +=1 
+    }
+    count
 }
