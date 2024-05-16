@@ -81,19 +81,52 @@ impl From<u32> for RomanNumber {
 	}
 	
 }
+impl RomanNumber {
+    // Fonction pour convertir un vecteur de chiffres romains en u32
+    fn to_u32(&self) -> u32 {
+        let mut result = 0;
+        let mut prev_value = 0;
+
+        for digit in &self.0 {
+            let value = match digit {
+                Nulla => 0,
+                I => 1,
+                V => 5,
+                X => 10,
+                L => 50,
+                C => 100,
+                D => 500,
+                M => 1000,
+            };
+            result += if value > prev_value {
+                // Si la valeur actuelle est plus grande que la précédente,
+                // cela signifie que nous avons un chiffre romain composé.
+                // Dans ce cas, nous devons soustraire deux fois la valeur précédente.
+                value - 2 * prev_value
+            } else {
+                value
+            };
+            prev_value = value;
+        }
+
+        result
+    }
+}
 
 impl Iterator for RomanNumber {
-     type Item = RomanNumber;
+    type Item = RomanNumber;
 
-    fn next(&mut self) -> Option<Self::Item> {
-        let mut digits = self.0.clone();
-        println!("roman {:?}", digits);
-        if digits.len() == 1 && digits[0] == Nulla{
+     fn next(&mut self) -> Option<Self::Item> {
+        // Convertir la liste de chiffres romains en nombre entier
+        let mut value = self.to_u32();
 
-            return  Some(RomanNumber(vec![I])); 
-        }
-        digits.push(I);
-        println!("apres {:?}", digits);
-        Some(RomanNumber(digits))
+        // Incrémenter le nombre
+        value += 1;
+
+        // Convertir le nouveau nombre en une RomanNumber
+        *self = RomanNumber::from(value);
+
+        // Renvoyer la RomanNumber mise à jour
+        Some(self.clone())
     }
 }
