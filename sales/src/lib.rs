@@ -26,21 +26,20 @@ impl Cart {
         }
     }
     pub fn generate_receipt(&mut self) -> Vec<f32> {
-       
-        let discount = self.get_discount();
-        let mut receipt = self.items.iter()
-            .map(|(_, price)| price - discount)
-            .collect::<Vec<f32>>();
-        self.receipt = receipt.clone();
+        println!("self {:?}", self);
+        // let discount = self.get_discount();
+        // let mut receipt = self.items.iter()
+        //     .map(|(_, price)| price - discount)
+        //     .collect::<Vec<f32>>();
+        // self.receipt = receipt.clone();
         
-        receipt.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        // receipt.sort_by(|a, b| a.partial_cmp(b).unwrap());
         
-        receipt.iter_mut().for_each(|price| *price = format!("{:.2}", *price).parse::<f32>().unwrap()); // Formater avec deux chiffres après la virgule
-        self.receipt.iter_mut().for_each(|price| *price = format!("{:.2}", *price).parse::<f32>().unwrap());
-        self.receipt = vec![1.17, 2.98, 22.06];
+        // receipt.iter_mut().for_each(|price| *price = format!("{:.2}", *price).parse::<f32>().unwrap()); // Formater avec deux chiffres après la virgule
+        // self.receipt.iter_mut().for_each(|price| *price = format!("{:.2}", *price).parse::<f32>().unwrap());
         
-        receipt = vec![1.17, 2.98, 22.06];
-        receipt
+        // receipt 
+        vec![]
     
     }
     fn get_discount(&mut self) -> f32 {
