@@ -86,6 +86,7 @@ impl Iterator for RomanNumber {
 
     fn next(&mut self) -> Option<Self::Item> {
         let mut digits = self.0.clone();
+        println!("roman {:?}", digits);
         digits.push(I); 
         Some(RomanNumber(digits))
     }
