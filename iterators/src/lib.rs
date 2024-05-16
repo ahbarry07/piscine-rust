@@ -43,5 +43,5 @@ pub fn collatz(n: u64) -> usize {
         }
         count += 1;
     }
-    count
+    count + 1
 }
