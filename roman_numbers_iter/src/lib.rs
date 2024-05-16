@@ -39,7 +39,8 @@ impl From<u32> for RomanNumber {
         let mut index = 0;
         let  powers_of_ten = vec![1000, 100, 10, 1];
 
-		if num <= 0 {
+		if num == 0 {
+            print!("value de {:?}", value);
             return RomanNumber(vec![RomanDigit::Nulla]);
         }
 
@@ -87,7 +88,8 @@ impl Iterator for RomanNumber {
     fn next(&mut self) -> Option<Self::Item> {
         let mut digits = self.0.clone();
         println!("roman {:?}", digits);
-        digits.push(I); 
+        digits.push(RomanDigit::I); 
+        println!("apres {:?}", digits);
         Some(RomanNumber(digits))
     }
 }
