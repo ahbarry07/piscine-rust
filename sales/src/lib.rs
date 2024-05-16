@@ -29,25 +29,24 @@ impl Cart {
         let mut prices: Vec<f32> = self.items.iter().map(|(_, price)| *price).collect();
         prices.sort_by(|a, b| a.partial_cmp(b).unwrap());
 
-        let mut discounted_prices: Vec<f32> = Vec::new();
-        let mut total = 0.0;
         let discount_amount = prices.len() / 3;
+        let discounted_prices: Vec<f32> = prices
+            .iter()
+            .enumerate()
+            .map(|(i, &price)| {
+                if i < discount_amount {
+                    0.0
+                } else {
+                    price - prices[i - discount_amount]
+                }
+            })
+            .collect();
 
-        for i in 0..prices.len() {
-            if i < discount_amount {
-                discounted_prices.push(0.0);
-            } else {
-                let discounted_price = (prices[i] - (prices[i - discount_amount] / 10.0)).round();
-                discounted_prices.push(discounted_price);
-                total += discounted_price;
-            }
-        }
+        let total: f32 = discounted_prices.iter().sum();
+        self.receipt = discounted_prices.iter().map(|&x| x.round()).collect();
 
-        self.receipt = discounted_prices.clone();
-        total -= discounted_prices.iter().sum::<f32>() % 0.01;
-        total = (total * 100.0).round() / 100.0;
-
-        self.receipt = discounted_prices.iter().map(|&x| x - (total / discounted_prices.len() as f32)).collect();
+        let average_discount = total / self.receipt.len() as f32;
+        self.receipt = self.receipt.iter().map(|&x| x - average_discount).collect();
 
         self.receipt.clone()
     }
