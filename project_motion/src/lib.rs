@@ -44,6 +44,12 @@ impl Iterator for ThrowObject {
         let new_vel_x = self.init_velocity.x;
         let new_vel_y = self.init_velocity.y - g * self.time;
 
+        // Round the results to one decimal place
+        let new_pos_x = (new_pos_x * 10.0).round() / 10.0;
+        let new_pos_y = (new_pos_y * 10.0).round() / 10.0;
+        let new_vel_x = (new_vel_x * 10.0).round() / 10.0;
+        let new_vel_y = (new_vel_y * 10.0).round() / 10.0;
+
         // Update the actual position and velocity
         self.actual_position = Object {
             x: new_pos_x,
